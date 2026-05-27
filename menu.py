@@ -36,3 +36,21 @@ def validacao_entrada(mensagem):
             return int(input(mensagem))
         except ValueError:
             print("Erro, digite um numero valido")
+
+def criar_id():
+    """Funçao para criar novos ids"""
+
+def entrada_cadastro_ativo():
+    """Função para entrada de cadastro dos ativos"""
+    limite = validacao_entrada("Digite quantos ativos vai cadastrar: ")
+
+    print("Digite os dados abaixo: ")
+
+    for ativo in range(limite):
+        hostname = input("Hostname: ")  
+        responsavel = input("Responsavel: ")
+        setor = input("setor: ")
+        tipo_ativo = input("tipo_ativo: ")
+        lista_inicial_vulnerabilidades = input("Vulnerabilidades: ")
+    #criar um dicionario {"hostname": hostname}
+

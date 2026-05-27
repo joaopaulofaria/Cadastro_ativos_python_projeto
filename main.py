@@ -2,6 +2,7 @@
 from menu import menu_crud
 from menu import exibir_tipos
 from menu import validacao_entrada
+from menu import entrada_cadastro_ativo
 
 menu_crud()
 
@@ -9,9 +10,11 @@ menu_crud()
 operacao = validacao_entrada("Digite um numero: ")
 
 #colocar essa operacao em um while com talvez uma variavel de ativacao
+
 match operacao:
     case 0:
         exibir_tipos()
+        entrada_cadastro_ativo()
     case 1:
         print ("2 - Consulta")
     case 2:
@@ -21,7 +24,7 @@ match operacao:
     case 4:
         print ("vulnerabilidade")
     case 5:
-        print ("Sair")                            
+        print ("Sair")                           
     case _:
         print ("Opção invalida, tente novamente!")
 
