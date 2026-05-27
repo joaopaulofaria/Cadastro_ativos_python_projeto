@@ -1,19 +1,17 @@
 #criação de menu para projeto
 from menu import menu_crud
+from menu import exibir_tipos
+from menu import validacao_entrada
 
 menu_crud()
 
-operacao = input()
 #escrever funcao que valida entrada de usuarios (se é int ou nao etc) e mover pro outro arquivo
-try:
-    operacao = int(operacao)
-except ValueError:
-    print("Digite um número válido")
+operacao = validacao_entrada("Digite um numero: ")
 
 #colocar essa operacao em um while com talvez uma variavel de ativacao
 match operacao:
     case 0:
-        print ("1 - Cadastro de ativos")
+        exibir_tipos()
     case 1:
         print ("2 - Consulta")
     case 2:
