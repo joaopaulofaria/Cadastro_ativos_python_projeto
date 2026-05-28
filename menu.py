@@ -30,27 +30,46 @@ def exibir_tipos():
     for tipo in TipoAtivo:
         print(str(tipo.value) + " - " + str(tipo.name))
 
-def validacao_entrada(mensagem):
+def validacao_entrada_inteiro(mensagem, minimo=None, maximo=None):
     while True:
         try:
-            return int(input(mensagem))
+            tipo_ativo = int(input(mensagem))
+            if minimo is not None and tipo_ativo < minimo:
+                print(f"Erro: digite um valor maior ou igual a {minimo}.")
+            elif maximo is not None and tipo_ativo > maximo:
+                print(f"Erro: digite um valor menor ou igual a {maximo}.")
+            else:
+                return tipo_ativo
         except ValueError:
-            print("Erro, digite um numero valido")
+            print("Erro, digite um numero valido.")
 
-def criar_id():
-    """Funçao para criar novos ids"""
+def criacao_id(id_ativo):
+    if not id_ativo:
+        return 1
+    return max(id_ativo.keys()) + 1
 
-def entrada_cadastro_ativo():
+def entrada_cadastro_ativo(ativos):
     """Função para entrada de cadastro dos ativos"""
-    limite = validacao_entrada("Digite quantos ativos vai cadastrar: ")
 
+    limite = validacao_entrada_inteiro("Digite quantos ativos vai cadastrar: ")
     print("Digite os dados abaixo: ")
 
     for ativo in range(limite):
-        hostname = input("Hostname: ")  
+        id_ativo = criacao_id(ativos)
+
+        hostname = input("Hostname: ") 
         responsavel = input("Responsavel: ")
         setor = input("setor: ")
-        tipo_ativo = input("tipo_ativo: ")
-        lista_inicial_vulnerabilidades = input("Vulnerabilidades: ")
-    #criar um dicionario {"hostname": hostname}
+        exibir_tipos()
+        tipo_ativo = validacao_entrada_inteiro("Escolha o tipo do ativo (pelo id): ", minimo=1, maximo=8)
+
+        ativos[id_ativo] = {
+            "id": id_ativo,
+            "hostname": hostname,
+            "responsavel": responsavel,
+            "setor": setor,
+            "tipo_ativo": TipoAtivo(tipo_ativo).name
+        }
+    print (ativos)
+
 

@@ -1,20 +1,20 @@
 #criação de menu para projeto
 from menu import menu_crud
 from menu import exibir_tipos
-from menu import validacao_entrada
+from menu import validacao_entrada_inteiro
 from menu import entrada_cadastro_ativo
 
 menu_crud()
+ativos = {} 
 
 #escrever funcao que valida entrada de usuarios (se é int ou nao etc) e mover pro outro arquivo
-operacao = validacao_entrada("Digite um numero: ")
+operacao = validacao_entrada_inteiro("Digite um numero: ")
 
 #colocar essa operacao em um while com talvez uma variavel de ativacao
 
 match operacao:
     case 0:
-        exibir_tipos()
-        entrada_cadastro_ativo()
+        entrada_cadastro_ativo(ativos)
     case 1:
         print ("2 - Consulta")
     case 2:
