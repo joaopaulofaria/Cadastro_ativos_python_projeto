@@ -1,3 +1,4 @@
+import json
 from enum import Enum
 
 def menu_crud():
@@ -48,6 +49,11 @@ def criacao_id(id_ativo):
         return 1
     return max(id_ativo.keys()) + 1
 
+def salvar_ativos_json(ativos):
+    filename = "ativos.json"
+    with open(filename, "w") as f_obj:
+        json.dump(ativos, f_obj)
+
 def entrada_cadastro_ativo(ativos):
     """Função para entrada de cadastro dos ativos"""
 
@@ -70,6 +76,7 @@ def entrada_cadastro_ativo(ativos):
             "setor": setor,
             "tipo_ativo": TipoAtivo(tipo_ativo).name
         }
-    print (ativos)
+    salvar_ativos_json(ativos)
+
 
 

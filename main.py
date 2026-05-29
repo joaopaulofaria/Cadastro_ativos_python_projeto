@@ -13,17 +13,17 @@ operacao = validacao_entrada_inteiro("Digite um numero: ")
 #colocar essa operacao em um while com talvez uma variavel de ativacao
 
 match operacao:
-    case 0:
-        entrada_cadastro_ativo(ativos)
     case 1:
-        print ("2 - Consulta")
+        entrada_cadastro_ativo(ativos)
     case 2:
-        print ("3 - Atualizacao")
+        print ("2 - Consulta")
     case 3:
-        print ("4 - Delete")
+        print ("3 - Atualizacao")
     case 4:
-        print ("vulnerabilidade")
+        print ("4 - Delete")
     case 5:
+        print ("vulnerabilidade")
+    case 0:
         print ("Sair")                           
     case _:
         print ("Opção invalida, tente novamente!")
