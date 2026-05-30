@@ -7,12 +7,12 @@ def menu_crud():
     print ("--------------------------------------------------")
     print ("\tEscolha qual operação deseja realizar: ")
     print ("--------------------------------------------------")
-    print ("\t0 - Cadastro")
-    print ("\t1 - Consulta")
-    print ("\t2 - Atualização")
-    print ("\t3 - Deletar")
-    print ("\t4 - Cadastrar vulnerabilidades")
-    print ("\t5 - Sair")
+    print ("\t1 - Cadastro")
+    print ("\t2 - Consulta")
+    print ("\t3 - Atualização")
+    print ("\t4 - Deletar")
+    print ("\t5 - Cadastrar vulnerabilidades")
+    print ("\t0 - Sair")
     print ("--------------------------------------------------")
 
 class TipoAtivo(Enum):
@@ -24,6 +24,18 @@ class TipoAtivo(Enum):
     BANCO_DE_DADOS    = 6
     IMPRESSORA        = 7
     ESTACAO_TRABALHO  = 8
+
+class Severidade(Enum):
+    BAIXA    = 1
+    MEDIA    = 2
+    ALTA     = 3
+    CRITICA  = 4
+
+class StatusVuln(Enum):
+    ABERTA          = 1
+    EM_TRATAMENTO   = 2
+    CORRIGIDA       = 3
+    ACEITA_RISCO    = 4
 
 def exibir_tipos():
     """Mostra os tipos disponíveis com seus códigos."""
@@ -68,15 +80,47 @@ def entrada_cadastro_ativo(ativos):
         setor = input("setor: ")
         exibir_tipos()
         tipo_ativo = validacao_entrada_inteiro("Escolha o tipo do ativo (pelo id): ", minimo=1, maximo=8)
-
+            
         ativos[id_ativo] = {
             "id": id_ativo,
             "hostname": hostname,
             "responsavel": responsavel,
             "setor": setor,
-            "tipo_ativo": TipoAtivo(tipo_ativo).name
+            "tipo_ativo": TipoAtivo(tipo_ativo).name,
+            "vulnerabilidades": []
         }
+        adicionar_vulnerabilidade = input("Deseja cadastrar vulnerabilidades? (S/N): ")
+        if adicionar_vulnerabilidade == "S":
+            vulnerabilidade_inicial(ativos[id_ativo])
+        
     salvar_ativos_json(ativos)
 
 
+def carregar_dados():
+    filename = "ativos.json"
+    try:
+        with open(filename, "r") as f_obj:
+            dados = json.load(f_obj)
+            return {int(chave): valor for chave, valor in dados.items()}
+    except FileNotFoundError:
+        return {}
+    except json.JSONDecodeError:
+        return {}
+    
+def vulnerabilidade_inicial(ativo):
+    while True:
+        descricao  = input("Descrição: ")
+        categoria  = input("Categoria: ")
+        severidade = validacao_entrada_inteiro("Severidade (1-Baixa 2-Média 3-Alta 4-Crítica): ", minimo=1, maximo=4)
+        status     = validacao_entrada_inteiro("Status (1-Aberta 2-Em tratamento 3-Corrigida 4-Aceita risco): ", minimo=1, maximo=4)
 
+        ativo["vulnerabilidades"].append({
+            "descricao" : descricao,
+            "categoria" : categoria,
+            "severidade": Severidade(severidade).name,
+            "status"    : StatusVuln(status).name
+        })
+
+        adicionar_vulnerabilidade = input("Adicionar outra vulnerabilidade? (S/N): ").strip().upper()
+        if adicionar_vulnerabilidade != "S":
+            break
