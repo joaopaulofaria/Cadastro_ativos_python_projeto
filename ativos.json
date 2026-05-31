@@ -1,1 +1,1 @@
-{"1": {"id": 1, "hostname": "infra", "responsavel": "infra", "setor": "infra", "tipo_ativo": "SERVIDOR", "vulnerabilidades": [{"descricao": "vulnerabilidade de kernel", "categoria": "kernel", "severidade": "ALTA", "status": "CORRIGIDA"}]}}
+{"1": {"id": 1, "hostname": "infra", "responsavel": "dev", "setor": "infra", "tipo_ativo": "SERVIDOR", "vulnerabilidades": [{"descricao": "vulnerabilidade de kernel", "categoria": "kernel", "severidade": "ALTA", "status": "CORRIGIDA"}, {"descricao": "ssl", "categoria": "ssl", "severidade": "MEDIA", "status": "EM_TRATAMENTO"}]}}
