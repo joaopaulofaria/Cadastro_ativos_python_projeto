@@ -1,6 +1,7 @@
 from menu import validacao_entrada_inteiro
 
 def consulta_ativo(ativos):
+    """Consulta um ativo que esta na base de dados"""
     print("\n--- Consulta de Ativo ---")
     id_consulta = validacao_entrada_inteiro("Digite o numero do ativo: ")
     try:
@@ -10,6 +11,7 @@ def consulta_ativo(ativos):
         print("Ativo não encontrado.")
 
 def printar_ativo(ativo):
+    """Printa o ativo e as vulnerabilidades dele"""
     print("\n------------------------------------------")
     print ("ID: " + str(ativo['id']))
     print ("Hostname: " + ativo['hostname'])

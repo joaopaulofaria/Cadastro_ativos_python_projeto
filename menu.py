@@ -2,6 +2,7 @@ import json
 from enum import Enum
 
 def menu_crud():
+    """Mostra o menu inicial"""
     print ("--------------------------------------------------")
     print ("\tCadastro de Ativos")
     print ("--------------------------------------------------")
@@ -44,6 +45,7 @@ def exibir_tipos():
         print(str(tipo.value) + " - " + str(tipo.name))
 
 def validacao_entrada_inteiro(mensagem, minimo=None, maximo=None):
+    """Valida se a entrada é inteiro e o minimo e maximo para a ação"""
     while True:
         try:
             tipo_ativo = int(input(mensagem))
@@ -57,11 +59,13 @@ def validacao_entrada_inteiro(mensagem, minimo=None, maximo=None):
             print("Erro, digite um numero valido.")
 
 def criacao_id(id_ativo):
+    """Cria um id unico se baseando no maximo que ja existe"""
     if not id_ativo:
         return 1
     return max(id_ativo.keys()) + 1
 
 def salvar_ativos_json(ativos):
+    """Salva o ativo em json"""
     filename = "ativos.json"
     with open(filename, "w") as f_obj:
         json.dump(ativos, f_obj)
@@ -97,6 +101,7 @@ def entrada_cadastro_ativo(ativos):
 
 
 def carregar_dados():
+    """Carrega a base de dados de ativos para memoria"""
     filename = "ativos.json"
     try:
         with open(filename, "r") as f_obj:
@@ -108,6 +113,7 @@ def carregar_dados():
         return {}
     
 def vulnerabilidade_inicial(ativo):
+    """Cadastro de vulnerabilidades ao cadastrar um ativo"""
     while True:
         descricao  = input("Descrição: ")
         categoria  = input("Categoria: ")

@@ -1,19 +1,10 @@
-#criação de menu para projeto
-from menu import menu_crud
-from menu import validacao_entrada_inteiro
-from menu import entrada_cadastro_ativo
-from menu import carregar_dados
+from menu import menu_crud, validacao_entrada_inteiro, entrada_cadastro_ativo, carregar_dados
 from busca import consulta_ativo
 from atualizar import atualizar_ativo
 from delete import delete_ativo
 from vulnerabilidade import cadastro_vulnerabilidade
-#ver uma forma de tirar esse tanto de from (outras formas de chamar o metodo)
 
 ativos = carregar_dados()
-
-#escrever funcao que valida entrada de usuarios (se é int ou nao etc) e mover pro outro arquivo
-
-#colocar essa operacao em um while com talvez uma variavel de ativacao
 
 while True:
     menu_crud()

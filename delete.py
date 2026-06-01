@@ -1,9 +1,9 @@
-from menu import validacao_entrada_inteiro
+from menu import validacao_entrada_inteiro, salvar_ativos_json
 from busca import printar_ativo
-from menu import salvar_ativos_json
 
 def delete_ativo(ativos):
-    print ("Deletar ativo")
+    """Deleta um ativo e as vulnerabilidades dele"""
+    print("\n--- Deletar Ativo ---")
     id_consulta = validacao_entrada_inteiro("Digite o id de um ativo: ")
 
     try:
@@ -14,9 +14,10 @@ def delete_ativo(ativos):
     
     printar_ativo(ativo)
 
-    validacao = input ("Tem certeza dessa ação: (S/N)")
+    validacao = input ("Tem certeza dessa ação: (S/N): ")
     if validacao != "S":
         print ("Operação Cancelada")
+        return
 
     del ativos[id_consulta]
     salvar_ativos_json(ativos)
